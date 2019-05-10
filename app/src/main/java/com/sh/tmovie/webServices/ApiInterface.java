@@ -1,8 +1,7 @@
 package com.sh.tmovie.webServices;
 
-import com.sh.tmovie.model.entity.Movies;
-
-import java.util.ArrayList;
+import com.sh.tmovie.JsonResponse.MoviesResponse;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -16,6 +15,6 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @GET("3/movie/popular")
-    Call<ArrayList<Movies>>getMoviesList(@Query("api_key") String apiKey);
+    Call<List<MoviesResponse>>getMoviesList(@Query("api_key") String apiKey);
 
 }

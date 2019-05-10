@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sh.tmovie.JsonResponse.MoviesResponse;
 import com.sh.tmovie.R;
 import com.sh.tmovie.model.entity.Movies;
 import com.squareup.picasso.Picasso;
@@ -17,12 +19,12 @@ import java.util.List;
 
 import static com.sh.tmovie.utilis.Constants.SMALL_IMAGE_URL_PREFIX;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> implements AdapterView.OnItemClickListener {
 
     Context context;
-    List<Movies> moviesList;
+    List<MoviesResponse> moviesList;
 
-    public MovieAdapter(Context ctx,List<Movies> moviesList) {
+    public MovieAdapter(Context ctx,List<MoviesResponse> moviesList) {
         this.context = ctx;
         this.moviesList = moviesList;
     }
@@ -37,11 +39,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        Movies movies = moviesList.get(position);
-        viewHolder.titleTextView.setText(movies.getmTitle());
-        viewHolder.userRatingTextView.setText(String.format("%1$,.2f", movies.getmVoteAverage()));
-        if(movies.getmPosterPath() != null) {
-            String poster = SMALL_IMAGE_URL_PREFIX + movies.getmPosterPath();
+        MoviesResponse movies = moviesList.get(position);
+        viewHolder.titleTextView.setText(movies.getResults().get(position).getmTitle());
+        viewHolder.userRatingTextView.setText("Rating : " + String.format("%1$,.2f", movies.getResults().get(position).getmVoteAverage()));
+        if(movies.getResults().get(position).getmPosterPath() != null) {
+            String poster = SMALL_IMAGE_URL_PREFIX + movies.getResults().get(position).getmPosterPath();
             Picasso.get().load(poster).into(viewHolder.imageView);
         }
        /* GlideApp.with(context)
@@ -61,6 +63,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return moviesList.size();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

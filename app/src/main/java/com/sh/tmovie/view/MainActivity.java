@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.sh.tmovie.JsonResponse.MoviesResponse;
 import com.sh.tmovie.R;
 import com.sh.tmovie.adapter.MovieAdapter;
 import com.sh.tmovie.model.entity.Movies;
@@ -15,6 +16,7 @@ import com.sh.tmovie.webServices.ServiceGenerator;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvMoviesListView;
     private MovieAdapter mMovieAdapter;
-    private ArrayList<Movies> moviesList = new ArrayList<>();
+    private ArrayList<MoviesResponse> moviesList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void getMoviesList() {
         ApiInterface apiInterface = ServiceGenerator.createService(ApiInterface.class);
-        Call<ArrayList<Movies>> call = apiInterface.getMoviesList(Constants.API_KEY);
-        call.enqueue(new Callback<ArrayList<Movies>>() {
+        Call<List<MoviesResponse>> call = apiInterface.getMoviesList(Constants.API_KEY);
+        call.enqueue(new Callback<List<MoviesResponse>>() {
             @Override
-            public void onResponse(Call<ArrayList<Movies>> call, Response<ArrayList<Movies>> response) {
+            public void onResponse(Call<List<MoviesResponse>> call, Response<List<MoviesResponse>> response) {
                 if(response.isSuccessful()) {
                     Log.d(TAG, "Loading successfully, size: " + response.body());
-                    for(Movies movies: response.body()){
+                    for(MoviesResponse movies: response.body()){
                         moviesList.add(movies);
                     }
                     mMovieAdapter.notifyDataSetChanged();
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Movies>> call, Throwable t) {
+            public void onFailure(Call<List<MoviesResponse>> call, Throwable t) {
                 Log.d(TAG, "Fail: " + t.getMessage());
 
             }
