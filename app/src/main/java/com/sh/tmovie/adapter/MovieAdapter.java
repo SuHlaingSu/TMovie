@@ -22,9 +22,9 @@ import static com.sh.tmovie.utilis.Constants.SMALL_IMAGE_URL_PREFIX;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> implements AdapterView.OnItemClickListener {
 
     Context context;
-    List<MoviesResponse> moviesList;
+    List<Movies> moviesList;
 
-    public MovieAdapter(Context ctx,List<MoviesResponse> moviesList) {
+    public MovieAdapter(Context ctx,List<Movies> moviesList) {
         this.context = ctx;
         this.moviesList = moviesList;
     }
@@ -39,11 +39,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        MoviesResponse movies = moviesList.get(position);
-        viewHolder.titleTextView.setText(movies.getResults().get(position).getmTitle());
-        viewHolder.userRatingTextView.setText("Rating : " + String.format("%1$,.2f", movies.getResults().get(position).getmVoteAverage()));
-        if(movies.getResults().get(position).getmPosterPath() != null) {
-            String poster = SMALL_IMAGE_URL_PREFIX + movies.getResults().get(position).getmPosterPath();
+        Movies movies = moviesList.get(position);
+        viewHolder.titleTextView.setText(movies.getmTitle());
+        viewHolder.userRatingTextView.setText("Rating : " + String.format("%1$,.2f", movies.getmVoteAverage()));
+        if(movies.getmPosterPath() != null) {
+            String poster = SMALL_IMAGE_URL_PREFIX + movies.getmPosterPath();
             Picasso.get().load(poster).into(viewHolder.imageView);
         }
        /* GlideApp.with(context)

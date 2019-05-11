@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvMoviesListView;
     private MovieAdapter mMovieAdapter;
-    private ArrayList<MoviesResponse> moviesList = new ArrayList<>();
+    private ArrayList<Movies> moviesList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void getMoviesList() {
         ApiInterface apiInterface = ServiceGenerator.createService(ApiInterface.class);
-        Call<List<MoviesResponse>> call = apiInterface.getMoviesList(Constants.API_KEY);
-        call.enqueue(new Callback<List<MoviesResponse>>() {
+        Call<MoviesResponse> call = apiInterface.getMoviesList(Constants.API_KEY);
+        call.enqueue(new Callback<MoviesResponse>() {
             @Override
-            public void onResponse(Call<List<MoviesResponse>> call, Response<List<MoviesResponse>> response) {
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if(response.isSuccessful()) {
                     Log.d(TAG, "Loading successfully, size: " + response.body());
-                    for(MoviesResponse movies: response.body()){
+                    for(Movies movies: response.body().getResults()){
                         moviesList.add(movies);
                     }
                     mMovieAdapter.notifyDataSetChanged();
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<MoviesResponse>> call, Throwable t) {
+            public void onFailure(Call<MoviesResponse> call, Throwable t) {
                 Log.d(TAG, "Fail: " + t.getMessage());
 
             }
