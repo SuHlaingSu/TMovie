@@ -1,13 +1,15 @@
 package com.sh.tmovie.model.dao;
 
+import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.sh.tmovie.model.entity.Movies;
 
 import java.util.List;
-
+@Dao
 public interface MoviesDAO {
     @Query("SELECT * FROM Movies")
     List<Movies> getMovies();
@@ -17,4 +19,7 @@ public interface MoviesDAO {
 
     @Query("DELETE FROM movies")
     abstract void deleteAllMovies();
+
+    @Update (onConflict = OnConflictStrategy.REPLACE)
+    void updateMovie(Movies movies);
 }
