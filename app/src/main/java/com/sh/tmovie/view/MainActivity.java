@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         mDb.moviesDAO().insertMovie(mObj);
                     }
 
-                    Log.d(TAG,"Insert Local DB >>" + mDb.moviesDAO().getMovies().size());
+                   // Log.d(TAG,"Insert Local DB >>" + mDb.moviesDAO().getMovies().size());
                     mMovieAdapter.notifyDataSetChanged();
 
                 }
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //Show disconnected screen
             Toast.makeText(this,"No Connection, Please connect to net",Toast.LENGTH_SHORT).show();
-            moviesList.addAll(mDb.moviesDAO().getMovies());
+          //  moviesList.addAll(mDb.moviesDAO().getMovies());
             mMovieAdapter.notifyDataSetChanged();
         }
         return isConnected;

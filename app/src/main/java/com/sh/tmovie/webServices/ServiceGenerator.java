@@ -14,6 +14,7 @@ import okhttp3.Response;
 
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -44,6 +45,7 @@ public class ServiceGenerator {
                     .client(okHttpClient)
                     .baseUrl(Constants.BASE_API_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
         }
         return retrofit.create(serviceClass);

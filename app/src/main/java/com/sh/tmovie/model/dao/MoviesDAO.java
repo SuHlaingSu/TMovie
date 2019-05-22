@@ -9,10 +9,13 @@ import android.arch.persistence.room.Update;
 import com.sh.tmovie.model.entity.Movies;
 
 import java.util.List;
+
+import io.reactivex.Flowable;
+
 @Dao
 public interface MoviesDAO {
     @Query("SELECT * FROM Movies")
-    List<Movies> getMovies();
+   Flowable<List<Movies>> getMovies();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMovie(Movies movie);
