@@ -2,7 +2,8 @@ package com.sh.tmovie.webServices;
 
 import com.sh.tmovie.JsonResponse.MoviesResponse;
 
-import retrofit2.Call;
+import io.reactivex.Flowable;
+import retrofit2.Response;
 import retrofit2.http.GET;
 
 import retrofit2.http.Query;
@@ -14,6 +15,6 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @GET("3/movie/popular")
-    Call<MoviesResponse>getMoviesList(@Query("api_key") String apiKey);
+    Flowable<Response<MoviesResponse>> getMoviesList(@Query("api_key") String apiKey);
 
 }

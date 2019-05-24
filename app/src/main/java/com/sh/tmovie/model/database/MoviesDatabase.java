@@ -14,6 +14,7 @@ import static com.sh.tmovie.utilis.Constants.DATA_BASE_NAME;
 
 public abstract class MoviesDatabase extends RoomDatabase {
     private static MoviesDatabase instance;
+    public abstract MoviesDAO moviesDAO();
     public static MoviesDatabase getInstance(Context context) {
 
             if (instance == null) {
@@ -27,5 +28,4 @@ public abstract class MoviesDatabase extends RoomDatabase {
 
     }
 
-    public abstract MoviesDAO moviesDAO();
 }

@@ -18,7 +18,7 @@ public interface MoviesDAO {
    Flowable<List<Movies>> getMovies();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertMovie(Movies movie);
+    void insertMovie(List<Movies> movie);
 
     @Query("DELETE FROM movies")
     abstract void deleteAllMovies();

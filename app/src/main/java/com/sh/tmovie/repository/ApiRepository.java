@@ -6,6 +6,9 @@ import com.sh.tmovie.JsonResponse.MoviesResponse;
 import com.sh.tmovie.model.entity.Movies;
 import com.sh.tmovie.network.NetworkBoundResource;
 import com.sh.tmovie.network.Resource;
+import com.sh.tmovie.utilis.Constants;
+import com.sh.tmovie.webServices.ApiInterface;
+import com.sh.tmovie.webServices.RetrofitClient;
 
 import java.util.List;
 
@@ -25,17 +28,20 @@ public class ApiRepository {
         {
             @Override
             protected void saveCallResult(MoviesResponse request) {
+                localRepository.saveMovies(request.getResults());
 
             }
 
             @Override
             protected Flowable<List<Movies>> loadFromDb() {
-                return null;
+                return localRepository.fetchLocalMovies();
+
             }
 
             @Override
             protected Flowable<Response<MoviesResponse>> createCall() {
-                return null;
+                return new RetrofitClient().create(Constants.BASE_API_URL,true).create(ApiInterface.class).getMoviesList(Constants.API_KEY);
+
             }
         }.asFlowable();
     }

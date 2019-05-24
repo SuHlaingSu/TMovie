@@ -25,7 +25,7 @@ public class LocalRepository {
         this.application = application;
     }
 
-    public void saveMovies(Movies movies)
+    public void saveMovies(List<Movies> movies)
     {
         MoviesDatabase.getInstance(application).moviesDAO().insertMovie(movies);
     }
