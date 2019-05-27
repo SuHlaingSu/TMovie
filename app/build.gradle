@@ -62,6 +62,7 @@ dependencies {
     //RxJava & RxAndroid
     implementation "io.reactivex.rxjava2:rxjava:2.2.6"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    //RxJava support for Room
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
     // RxAndroid with retrofit
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
