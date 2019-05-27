@@ -1,6 +1,6 @@
 package com.sh.tmovie.di.module;
 
-import com.suhlaing.mydragger.constant.Constants;
+import com.sh.tmovie.utilis.Constants;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,6 +28,6 @@ public class RetrofitModule {
     @Provides
     public Retrofit retrofit(OkHttpClient okHttpClient)
     {
-        return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create()).addConverterFactory(GsonConverterFactory.create()).baseUrl(Constants.BASE_URL).client(okHttpClient).build();
+        return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create()).addConverterFactory(GsonConverterFactory.create()).baseUrl(Constants.BASE_API_URL).client(okHttpClient).build();
     }
 }
