@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getLive_movies().observe(this, new Observer<List<Movies>>() {
             @Override
             public void onChanged(@Nullable List<Movies> movies) {
+                viewModel.getLive_movies().removeObserver(this);
                 moviesList.addAll(movies);
                 mMovieAdapter.notifyDataSetChanged();
             }
