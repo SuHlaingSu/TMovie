@@ -7,13 +7,17 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
 
+import com.sh.tmovie.DraggerApplication;
 import com.sh.tmovie.data.room.entity.Movies;
 import com.sh.tmovie.network.Resource;
 import com.sh.tmovie.repository.ApiRepository;
 import com.sh.tmovie.repository.LocalRepository;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivityViewModel extends AndroidViewModel {
+    @Inject
     private final static String TAG = MainActivityViewModel.class.getSimpleName();
     private ApiRepository apiRepository;
 

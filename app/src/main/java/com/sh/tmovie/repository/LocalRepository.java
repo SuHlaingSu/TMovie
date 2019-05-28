@@ -27,11 +27,11 @@ public class LocalRepository {
 
     public void saveMovies(List<Movies> movies)
     {
-        MoviesDatabase.getInstance(application).moviesDAO().insertMovie(movies);
+       // MoviesDatabase.getInstance(application).moviesDAO().insertMovie(movies);
     }
 
     Flowable<List<Movies>> fetchLocalMovies()
     {
-        return MoviesDatabase.getInstance(application).moviesDAO().getMovies();
+        return null;//MoviesDatabase.getInstance(application).moviesDAO().getMovies();
     }
 }
