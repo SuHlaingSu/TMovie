@@ -1,6 +1,10 @@
 package com.sh.tmovie.di.module;
 
+import com.sh.tmovie.data.network.MoviesAPI;
 import com.sh.tmovie.utilis.Constants;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,6 +17,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitModule {
 
+    @Singleton
+    @Provides
+    public MoviesAPI getMovieApi (Retrofit retrofit)
+    {
+        return retrofit.create(MoviesAPI.class);
+    }
     @Provides
     public HttpLoggingInterceptor httpLoggingInterceptor()
     {
