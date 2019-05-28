@@ -1,4 +1,4 @@
-package com.sh.tmovie.model.dao;
+package com.sh.tmovie.data.room.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
@@ -6,7 +6,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.sh.tmovie.model.entity.Movies;
+import com.sh.tmovie.data.room.entity.Movies;
 
 import java.util.List;
 

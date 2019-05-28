@@ -7,7 +7,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
 
-import com.sh.tmovie.model.entity.Movies;
+import com.sh.tmovie.data.room.entity.Movies;
 import com.sh.tmovie.network.Resource;
 import com.sh.tmovie.repository.ApiRepository;
 import com.sh.tmovie.repository.LocalRepository;

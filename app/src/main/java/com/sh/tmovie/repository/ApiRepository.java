@@ -2,13 +2,12 @@ package com.sh.tmovie.repository;
 
 import android.content.Context;
 
-import com.sh.tmovie.JsonResponse.MoviesResponse;
-import com.sh.tmovie.model.entity.Movies;
+import com.sh.tmovie.data.network.response.MoviesListResponse;
+import com.sh.tmovie.data.room.entity.Movies;
 import com.sh.tmovie.network.NetworkBoundResource;
 import com.sh.tmovie.network.Resource;
 import com.sh.tmovie.utilis.Constants;
-import com.sh.tmovie.webServices.ApiInterface;
-import com.sh.tmovie.webServices.RetrofitClient;
+import com.sh.tmovie.data.network.MoviesAPI;
 
 import java.util.List;
 
@@ -24,10 +23,10 @@ public class ApiRepository {
 
     public Flowable<Resource<List<Movies>>> getAllMovies(Context context)
     {
-        return new NetworkBoundResource<List<Movies>, MoviesResponse>(context)
+        return new NetworkBoundResource<List<Movies>, MoviesListResponse>(context)
         {
             @Override
-            protected void saveCallResult(MoviesResponse request) {
+            protected void saveCallResult(MoviesListResponse request) {
                 localRepository.saveMovies(request.getResults());
 
             }
@@ -39,8 +38,8 @@ public class ApiRepository {
             }
 
             @Override
-            protected Flowable<Response<MoviesResponse>> createCall() {
-                return new RetrofitClient().create(Constants.BASE_API_URL,true).create(ApiInterface.class).getMoviesList(Constants.API_KEY);
+            protected Flowable<Response<MoviesListResponse>> createCall() {
+                return null;// new RetrofitClient().create(Constants.BASE_API_URL,true).create(MoviesAPI.class).getMoviesList(Constants.API_KEY);
 
             }
         }.asFlowable();

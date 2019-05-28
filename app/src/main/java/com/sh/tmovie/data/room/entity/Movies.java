@@ -1,4 +1,4 @@
-package com.sh.tmovie.model.entity;
+package com.sh.tmovie.data.room.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

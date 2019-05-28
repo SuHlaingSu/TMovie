@@ -1,7 +1,7 @@
-package com.sh.tmovie.JsonResponse;
+package com.sh.tmovie.data.network.response;
 
 import com.google.gson.annotations.SerializedName;
-import com.sh.tmovie.model.entity.Movies;
+import com.sh.tmovie.data.room.entity.Movies;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Su Hlaing on 10/5/2019.
  */
 
-public class MoviesResponse {
+public class MoviesListResponse {
     @SerializedName("results")
     private List<Movies> results;
     @SerializedName("total_pages")

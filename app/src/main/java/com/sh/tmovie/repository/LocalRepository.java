@@ -2,8 +2,8 @@ package com.sh.tmovie.repository;
 
 import android.app.Application;
 
-import com.sh.tmovie.model.database.MoviesDatabase;
-import com.sh.tmovie.model.entity.Movies;
+import com.sh.tmovie.data.room.database.MoviesDatabase;
+import com.sh.tmovie.data.room.entity.Movies;
 
 import java.util.List;
 

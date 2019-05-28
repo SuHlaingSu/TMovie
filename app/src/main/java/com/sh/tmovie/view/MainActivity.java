@@ -7,13 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.sh.tmovie.R;
 import com.sh.tmovie.adapter.MovieAdapter;
-import com.sh.tmovie.model.database.MoviesDatabase;
-import com.sh.tmovie.model.entity.Movies;
-import com.sh.tmovie.network.ConnectivityHelper;
+import com.sh.tmovie.data.room.entity.Movies;
 import com.sh.tmovie.viewModel.MainActivityViewModel;
 
 

@@ -10,9 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sh.tmovie.JsonResponse.MoviesResponse;
 import com.sh.tmovie.R;
-import com.sh.tmovie.model.entity.Movies;
+import com.sh.tmovie.data.room.entity.Movies;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
