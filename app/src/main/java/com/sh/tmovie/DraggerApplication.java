@@ -17,7 +17,7 @@ public class DraggerApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-        //component=DaggerRetrofitComponent.builder().applicationContextModule(new ApplicationContextModule(this)).build();
+        component=DaggerRetrofitComponent.builder().applicationContextModule(new ApplicationContextModule(this)).build();
     }
 
     public RetrofitComponent getComponent(){
