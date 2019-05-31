@@ -2,12 +2,11 @@ package com.sh.tmovie.viewModel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
 
-import com.sh.tmovie.DraggerApplication;
 import com.sh.tmovie.data.room.entity.Movies;
 import com.sh.tmovie.network.Resource;
 import com.sh.tmovie.repository.ApiRepository;

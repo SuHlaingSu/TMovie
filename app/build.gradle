@@ -9,7 +9,7 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -27,18 +27,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     // Room
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    implementation 'androidx.room:room-runtime:2.0.0'
+    annotationProcessor 'androidx.room:room-compiler:2.0.0'
 
     // ViewModel and LiveData
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
     // GSON
    // implementation 'com.google.code.gson:gson:2.8.5'
     //Retrofit 2
@@ -50,7 +50,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.14.1'
 
     //RecyclerView
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     // Loading Image
     implementation 'com.github.bumptech.glide:glide:4.9.0'
@@ -58,13 +58,13 @@ dependencies {
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
     //RxJava
     implementation "io.reactivex.rxjava2:rxjava:2.2.6"
     //RxAndroid
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     //RxJava support for Room
-    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+    implementation 'androidx.room:room-rxjava2:2.0.0'
     // RxAndroid with retrofit
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     //Add Dragger Dependencies

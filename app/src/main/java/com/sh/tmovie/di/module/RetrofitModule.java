@@ -24,19 +24,19 @@ public class RetrofitModule {
         return retrofit.create(MoviesAPI.class);
     }
     @Provides
-    public HttpLoggingInterceptor httpLoggingInterceptor()
+    public HttpLoggingInterceptor provideHttpLoggingInterceptor()
     {
         return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
     @Provides
-    public OkHttpClient okHttpClient(HttpLoggingInterceptor httpLoggingInterceptor)
+    public OkHttpClient provideOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor)
     {
         return new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
     }
 
     @Provides
-    public Retrofit retrofit(OkHttpClient okHttpClient)
+    public Retrofit provideRetrofit(OkHttpClient okHttpClient)
     {
         return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create()).addConverterFactory(GsonConverterFactory.create()).baseUrl(Constants.BASE_API_URL).client(okHttpClient).build();
     }
