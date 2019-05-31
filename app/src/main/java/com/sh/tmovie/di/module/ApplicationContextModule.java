@@ -6,14 +6,14 @@ import dagger.Module;
 
 @Module
 public class ApplicationContextModule {
-    public DraggerApplication draggerApplication;
+    private DraggerApplication application;
 
-    public ApplicationContextModule(DraggerApplication draggerApplication) {
-        this.draggerApplication=draggerApplication;
+    public ApplicationContextModule(DraggerApplication application) {
+        this.application=application;
     }
 
-    public DraggerApplication provideDraggerApplication()
+    public DraggerApplication provideAppContext()
     {
-        return draggerApplication;
+        return application;
     }
 }
