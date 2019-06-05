@@ -11,28 +11,50 @@ import com.sh.tmovie.data.room.entity.Movies;
 import com.sh.tmovie.network.Resource;
 import com.sh.tmovie.repository.ApiRepository;
 import com.sh.tmovie.repository.LocalRepository;
+import com.sh.tmovie.utilis.Constants;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 public class MainActivityViewModel extends AndroidViewModel {
     @Inject
+    public MovieApi movieApi;
+    private Disposable disposable = new CompositeDisposable();
+
     private final static String TAG = MainActivityViewModel.class.getSimpleName();
-    private ApiRepository apiRepository;
+   // private ApiRepository apiRepository;
 
      MutableLiveData<List<Movies>> live_movies = new MutableLiveData<>();
 
     public MainActivityViewModel(Application application) {
         super(application);
-        LocalRepository localSource = LocalRepository.getInstance(application);
-        apiRepository = new ApiRepository(localSource);
+        DaggerApplication.getInstance().getComponent().inject(this);
+        if (movieApi == null) {
+            Log.d(TAG, "MainActivityViewModel: MOVIE API IS NULL");
+        } else {
+            Log.d(TAG, "MainActivityViewModel: MOVIE API IS NOT NULL");
+        }
+//        LocalRepository localSource = LocalRepository.getInstance(application);
+//        apiRepository = new ApiRepository(localSource);
     }
 
     public MutableLiveData<List<Movies>> getLive_movies() {
         return live_movies;
     }
+    public void getFromAPI() {
+        disposable = movieApi.getMoviesList(Constants.API_KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.computation())
+                .map(popularResponseResponse -> popularResponseResponse.body().getResults())
+                .onErrorReturn(throwable -> null)
+                .subscribe(movies -> liveData.postValue(movies));
 
-    @SuppressLint("CheckResult")
+    }
+    /*@SuppressLint("CheckResult")
     public void getMoviesList(Context context) {
         apiRepository.getAllMovies(context).subscribe((Resource<List<Movies>> resource) -> {
             if (resource.data != null) {
@@ -49,5 +71,5 @@ public class MainActivityViewModel extends AndroidViewModel {
 
         });
 
-    }
+    }*/
 }
