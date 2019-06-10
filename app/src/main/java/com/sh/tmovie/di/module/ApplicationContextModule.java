@@ -1,18 +1,23 @@
 package com.sh.tmovie.di.module;
 
-import com.sh.tmovie.DraggerApplication;
+import android.app.Application;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
+import dagger.Provides;
 
 @Module
 public class ApplicationContextModule {
-    private DraggerApplication application;
+    private Application application;
 
-    public ApplicationContextModule(DraggerApplication application) {
+    public ApplicationContextModule(Application application) {
         this.application=application;
     }
 
-    public DraggerApplication provideAppContext()
+    @Provides
+    @Singleton
+    public Application provideAppContext()
     {
         return application;
     }

@@ -23,6 +23,7 @@ public class RetrofitModule {
     {
         return retrofit.create(MoviesAPI.class);
     }
+
     @Provides
     public HttpLoggingInterceptor provideHttpLoggingInterceptor()
     {

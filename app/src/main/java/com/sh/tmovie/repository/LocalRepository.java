@@ -2,8 +2,10 @@ package com.sh.tmovie.repository;
 
 import android.app.Application;
 
+import com.sh.tmovie.DraggerApplication;
 import com.sh.tmovie.data.room.database.MoviesDatabase;
 import com.sh.tmovie.data.room.entity.Movies;
+import com.sh.tmovie.di.component.RetrofitComponent;
 
 import java.util.List;
 
@@ -27,11 +29,11 @@ public class LocalRepository {
 
     public void saveMovies(List<Movies> movies)
     {
-       // MoviesDatabase.getInstance(application).moviesDAO().insertMovie(movies);
+        DraggerApplication.getInstance().getComponent().moviesDAO().insertMovie(movies);// MoviesDatabase.getInstance(application).moviesDAO().insertMovie(movies);
     }
 
     Flowable<List<Movies>> fetchLocalMovies()
     {
-        return null;//MoviesDatabase.getInstance(application).moviesDAO().getMovies();
+        return DraggerApplication.getInstance().getComponent().moviesDAO().getMovies();//MoviesDatabase.getInstance(application).moviesDAO().getMovies();
     }
 }
