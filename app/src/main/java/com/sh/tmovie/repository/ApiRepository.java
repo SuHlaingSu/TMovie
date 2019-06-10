@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.sh.tmovie.DraggerApplication;
 import com.sh.tmovie.data.network.response.MoviesListResponse;
+import com.sh.tmovie.data.room.dao.MoviesDAO;
 import com.sh.tmovie.data.room.entity.Movies;
 import com.sh.tmovie.di.component.RetrofitComponent;
 import com.sh.tmovie.network.NetworkBoundResource;
@@ -18,11 +19,13 @@ import io.reactivex.Flowable;
 import retrofit2.Response;
 
 public class ApiRepository {
-   private LocalRepository localRepository;
+   //private LocalRepository localRepository;
    MoviesAPI moviesAPI;
+   MoviesDAO moviesDAO;
 
-    public ApiRepository(LocalRepository localRepository) {
-        this.localRepository = localRepository;
+    public ApiRepository(MoviesAPI moviesAPI, MoviesDAO moviesDAO) {
+        this.moviesAPI = moviesAPI;
+        this.moviesDAO = moviesDAO;
     }
 
     public Flowable<Resource<List<Movies>>> getAllMovies(Context context)
@@ -31,13 +34,13 @@ public class ApiRepository {
         {
             @Override
             protected void saveCallResult(MoviesListResponse request) {
-                localRepository.saveMovies(request.getResults());
+                moviesDAO.insertMovie(request.getResults());
 
             }
 
             @Override
             protected Flowable<List<Movies>> loadFromDb() {
-                return localRepository.fetchLocalMovies();
+                return moviesDAO.getMovies();
 
             }
 

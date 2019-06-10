@@ -48,8 +48,8 @@ public class MainActivityViewModel extends AndroidViewModel {
         } else {
             Log.d(TAG, "MainActivityViewModel: MOVIE API IS NOT NULL");
         }
-        LocalRepository localSource = LocalRepository.getInstance(application);
-        apiRepository = new ApiRepository(localSource);
+       // LocalRepository localSource = LocalRepository.getInstance(application);
+        apiRepository = new ApiRepository(movieApi,moviesDAO);
     }
 
 //    public void getFromAPI() {
