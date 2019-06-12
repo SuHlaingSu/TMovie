@@ -51,4 +51,28 @@ public class ApiRepository {
             }
         }.asFlowable();
     }
+
+    public Flowable<Resource<List<Movies>>> getAllMoviesWithPage(Context context)
+    {
+        return new NetworkBoundResource<List<Movies>, MoviesListResponse>(context)
+        {
+            @Override
+            protected void saveCallResult(MoviesListResponse request) {
+                moviesDAO.insertMovie(request.getResults());
+
+            }
+
+            @Override
+            protected Flowable<List<Movies>> loadFromDb() {
+                return moviesDAO.getMovies();
+
+            }
+
+            @Override
+            protected Flowable<Response<MoviesListResponse>> createCall() {
+                return moviesAPI.getMoviesListWithPaging(Constants.API_KEY,40);// new RetrofitClient().create(Constants.BASE_API_URL,true).create(MoviesAPI.class).getMoviesList(Constants.API_KEY);
+
+            }
+        }.asFlowable();
+    }
 }

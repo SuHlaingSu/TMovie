@@ -1,7 +1,11 @@
 package com.sh.tmovie.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.paging.PagedListAdapter;
+import androidx.recyclerview.widget.AsyncDifferConfig;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +22,19 @@ import java.util.List;
 
 import static com.sh.tmovie.utilis.Constants.SMALL_IMAGE_URL_PREFIX;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> implements AdapterView.OnItemClickListener {
+public class MovieAdapter extends PagedListAdapter<Movies,MovieAdapter.ViewHolder> implements AdapterView.OnItemClickListener {
 
     Context context;
     List<Movies> moviesList;
 
-    public MovieAdapter(Context ctx,List<Movies> moviesList) {
+   /* public MovieAdapter(Context ctx,List<Movies> moviesList) {
         this.context = ctx;
         this.moviesList = moviesList;
+    }*/
+
+    public MovieAdapter(@NonNull DiffUtil.ItemCallback<Movies> diffCallback, Context context) {
+        super(diffCallback);
+        this.context = context;
     }
 
     @NonNull
@@ -58,6 +67,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 */
 
     }
+
+    private  static DiffUtil.ItemCallback<Movies> diff_callback = new DiffUtil.ItemCallback<Movies>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Movies oldItem, @NonNull Movies newItem) {
+            return oldItem.mOriginalTitle == newItem.mOriginalTitle;
+        }
+
+        @SuppressLint("DiffUtilEquals")
+        @Override
+        public boolean areContentsTheSame(@NonNull Movies oldItem, @NonNull Movies newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 
     @Override
     public int getItemCount() {

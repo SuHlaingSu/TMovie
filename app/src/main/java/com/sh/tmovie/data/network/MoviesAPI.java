@@ -17,4 +17,6 @@ public interface MoviesAPI {
     @GET("3/movie/popular")
     Flowable<Response<MoviesListResponse>> getMoviesList(@Query("api_key") String apiKey);
 
+    @GET("3/movie/popular")
+    Flowable<Response<MoviesListResponse>> getMoviesListWithPaging(@Query("api_key") String apiKey,@Query("page") long page);
 }
