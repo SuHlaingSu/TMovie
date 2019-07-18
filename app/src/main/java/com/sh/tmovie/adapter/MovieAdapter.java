@@ -1,16 +1,17 @@
 package com.sh.tmovie.adapter;
 
-import android.annotation.SuppressLint;
+
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.paging.PagedListAdapter;
-import androidx.recyclerview.widget.AsyncDifferConfig;
+
+
 import androidx.recyclerview.widget.DiffUtil;
+
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,19 +23,14 @@ import java.util.List;
 
 import static com.sh.tmovie.utilis.Constants.SMALL_IMAGE_URL_PREFIX;
 
-public class MovieAdapter extends PagedListAdapter<Movies,MovieAdapter.ViewHolder> implements AdapterView.OnItemClickListener {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     Context context;
     List<Movies> moviesList;
 
-   /* public MovieAdapter(Context ctx,List<Movies> moviesList) {
-        this.context = ctx;
-        this.moviesList = moviesList;
-    }*/
-
-    public MovieAdapter(@NonNull DiffUtil.ItemCallback<Movies> diffCallback, Context context) {
-        super(diffCallback);
+    public MovieAdapter(Context context, List<Movies> moviesList) {
         this.context = context;
+        this.moviesList = moviesList;
     }
 
     @NonNull
@@ -68,27 +64,9 @@ public class MovieAdapter extends PagedListAdapter<Movies,MovieAdapter.ViewHolde
 
     }
 
-    private  static DiffUtil.ItemCallback<Movies> diff_callback = new DiffUtil.ItemCallback<Movies>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull Movies oldItem, @NonNull Movies newItem) {
-            return oldItem.mOriginalTitle == newItem.mOriginalTitle;
-        }
-
-        @SuppressLint("DiffUtilEquals")
-        @Override
-        public boolean areContentsTheSame(@NonNull Movies oldItem, @NonNull Movies newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
-
     @Override
     public int getItemCount() {
         return moviesList.size();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

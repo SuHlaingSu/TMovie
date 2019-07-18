@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         viewModel.getMoviesList(this);
         rvMoviesListView.setLayoutManager(new GridLayoutManager(this, 2));
-        mMovieAdapter = new MovieAdapter(getApplicationContext(), moviesList);
+        mMovieAdapter = new MovieAdapter(getApplicationContext(),moviesList);
         viewModel.getLive_movies().observe(this, new Observer<List<Movies>>() {
             @Override
             public void onChanged(@Nullable List<Movies> movies) {
